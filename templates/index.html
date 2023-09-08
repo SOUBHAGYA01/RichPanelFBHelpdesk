@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Link to preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Link to Google Fonts stylesheets for font styles -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+
+    <!-- Set the title of the HTML page -->
+    <title>Document</title>
+  </head>
+  <style>
+    /* Set background color and font styles for the entire body */
+body {
+    background: #004d95; /* Background color */
+    font-family: "Open Sans", sans-serif; /* Font family for Open Sans */
+    font-family: "Poppins", sans-serif; /* Font family for Poppins */
+  }
+  
+  /* Style for the login form, adding a border */
+  form {
+    border: 3px solid #f1f1f1;
+  }
+  
+  /* Styling for full-width input fields (text and password) */
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  
+    margin-top: 10px; /* Top margin */
+    margin-bottom: 10px; /* Bottom margin */
+    border-radius: 6px; /* Rounded corners */
+  }
+  
+  /* Styling for all buttons */
+  button {
+    background-color: #004e95; /* Background color */
+    color: white; /* Text color */
+    padding: 14px 20px;
+    display: block;
+    border-radius: 4px; /* Rounded corners */
+  
+    border: none; /* Remove border */
+    cursor: pointer; /* Cursor style */
+    width: 100%;
+    margin: auto; /* Center horizontally */
+    margin-top: 10px; /* Top margin */
+    margin-bottom: 10px; /* Bottom margin */
+  }
+  
+  /* Add a hover effect to buttons when the mouse hovers over them */
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Padding and styling for the container that holds the form */
+  .container {
+    padding: 16px;
+    margin: auto; /* Center the container horizontally */
+    width: 25%;
+    display: block;
+    background: #fefefe; /* Background color */
+    border-radius: 10px; /* Rounded corners */
+    margin-top: 20vh; /* Top margin based on viewport height */
+  }
+  
+  /* Styling for the contents inside the container */
+  .contents {
+    margin: 15%; /* Margin for contents */
+  }
+  
+  </style>
+  <body>
+    <!-- Container for the login form -->
+    <div class="container">
+      <div class="contents">
+        <!-- Login form with action set to "/submit" and method set to "POST" -->
+        <form action="/submit" method="POST">
+          <h2 style="text-align: center; margin-top: -20px">Login</h2>
+          <!-- Label and input field for entering the username -->
+          <label for="uname">Username</label>
+          <input
+            type="text"
+            placeholder="Enter Username"
+            name="uname"
+            required
+          />
+
+          <!-- Label and input field for entering the password -->
+          <label for="level">Password</label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            name="level"
+            required
+          />
+
+          <!-- Submit button for the login form -->
+          <button type="submit" value="Submit" class="btn">Login</button>
+        </form>
+        <!-- Link to create an account -->
+        <span class="level"
+          ><a href="/register" style="text-decoration: none"
+            >Create account?</a
+          ></span
+        >
+      </div>
+    </div>
+    <!-- Copyright information -->
+    <div class="credit" style="float: right; color: #fefefe">
+      @Soubhagya Kumar Dash
+    </div>
+  </body>
+</html>

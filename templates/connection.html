@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Link to preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Link to Google Fonts stylesheets for font styles -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200;300;400;500&display=swap"
+    rel="stylesheet" />
+
+ 
+
+  <!-- Set the title of the HTML page -->
+  <title>Facebook Login</title>
+</head>
+<style>
+  /* Bordered form */
+
+/* Set the background color and font styles for the entire body */
+body {
+    background: #004d95; /* Background color */
+    font-family: "Open Sans", sans-serif; /* Use Open Sans font */
+    font-family: "Poppins", sans-serif; /* Use Poppins font */
+  }
+  
+  /* Style for the form, adding a border */
+  form {
+    border: 3px solid #f1f1f1; /* Border around the form */
+  }
+  
+  /* Style for full-width input fields (text and password) */
+  input[type="text"],
+  input[type="password"] {
+    width: 100%; /* Take up full width of the parent container */
+    padding: 12px 20px; /* Padding inside the input fields */
+    margin: 8px 0; /* Margin around the input fields */
+    display: block; /* Display as block elements */
+    border: 1px solid #ccc; /* Border around input fields */
+    box-sizing: border-box; /* Include padding and border in the total width */
+  
+    margin-top: 10px; /* Top margin */
+    margin-bottom: 10px; /* Bottom margin */
+    border-radius: 6px; /* Rounded corners for input fields */
+  }
+  
+  /* Style for all buttons */
+  button {
+    background-color: #004e95; /* Background color of buttons */
+    color: white; /* Text color of buttons */
+    padding: 14px 20px; /* Padding inside buttons */
+    display: block; /* Display as block elements */
+    border-radius: 4px; /* Rounded corners for buttons */
+  
+    border: none; /* Remove border from buttons */
+    cursor: pointer; /* Use pointer cursor on buttons */
+    width: 100%; /* Take up full width of the parent container */
+    margin: auto; /* Center horizontally */
+    margin-top: 10px; /* Top margin */
+    margin-bottom: 10px; /* Bottom margin */
+  }
+  
+  /* Add a hover effect to buttons when the mouse hovers over them */
+  button:hover {
+    opacity: 0.8; /* Reduce opacity for a hover effect */
+  }
+  
+  /* Add padding and styling to containers */
+  .container {
+    padding: 16px; /* Padding inside the container */
+    margin: auto; /* Center the container horizontally */
+    width: 25%; /* Set a fixed width for the container */
+    display: block; /* Display as a block element */
+    background: #fefefe; /* Background color of the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    margin-top: 20vh; /* Top margin based on viewport height */
+  }
+  
+  /* Style for the contents inside the container */
+  .contents {
+    margin: 15%; /* Margin for the contents within the container */
+  }
+  
+</style>
+
+<body>
+  <!-- JavaScript for Facebook SDK initialization -->
+  <script>
+    // Function to initialize the Facebook SDK
+    window.initFacebookSDK = function () {
+      FB.init({
+        appId: "512144504041187",  // Your Facebook App ID
+        cookie: true,
+        xfbml: true,
+        version: "v14.0",
+      });
+
+      // Check the user's login status and handle it
+      FB.getLoginStatus(function (response) {
+        handleStatusChange(response);
+      });
+    };
+
+    // Asynchronously load the Facebook SDK
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+
+    // Function to handle the user's login status
+    function handleStatusChange(response) {
+      if (response.status === "connected") {
+        console.log("Logged in and authenticated!");
+        // Fetch the user's profile information
+        fetchUserProfile();
+      } else {
+        console.log("Not authenticated!");
+      }
+    }
+
+    // Function to check the user's login state
+    function checkLoginState() {
+      FB.getLoginStatus(function (response) {
+        handleStatusChange(response);
+      });
+    }
+
+    // Function to fetch and display the user's profile information
+    function fetchUserProfile() {
+      FB.api(
+        "/me",
+        "GET",
+        {
+          fields: "id,name,first_name,last_name,email",
+        },
+        function (response) {
+          if (response && !response.error) {
+            console.log(response);
+
+            // Display the user's profile details in the "profile" div
+            const profileDiv = document.getElementById("profile");
+            profileDiv.innerHTML = `Profile details:<br>
+              Full name: ${response.name}<br>Email: ${response.email}`;
+          }
+        }
+      );
+    }
+  </script>
+
+  <!-- Placeholder for displaying the user's profile information -->
+  <div id="profile"></div>
+
+  <!-- Placeholder for the Facebook SDK initialization -->
+  <div id="fb-root"></div>
+
+  <!-- Container for the Facebook login button -->
+  <div class="container">
+    <!-- Facebook login button with specified attributes -->
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" class="fb-login-button"
+      data-width="375px" data-size="large" data-button-type="login_with">
+    </fb:login-button>
+  </div>
+
+  <!-- Include the Facebook SDK asynchronously with specified settings -->
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0&appId=512144504041187&autoLogAppEvents=1"
+    nonce="kuXXNi1m"></script>
+</body>
+
+</html>
